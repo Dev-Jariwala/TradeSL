@@ -132,6 +132,7 @@
     <section id="DepositUSDT">
         <div class="container">
             <h2 class="my-4 text-center">Deposit USDT</h2>
+            <h6 class="my-4 text-center red">(dont forgot to fill <a href="#confirm-payment">confirm payment</a> form after depositing USDT or DM on <a href="">Instagram</a>)</h6>
             <form>
                 <div class="form-group">
                     <label for="coin">Select Coin</label>
@@ -153,34 +154,35 @@
     <section id="confirm-payment">
         <div class="container confirm-payment">
             <h2 class="my-4 text-center">Confirm Payment</h2>
-            <h6 class="my-4 text-center red">(for instant confirm payment, DM on <a href="">Instagram</a>)</h6>
-            <form>
+            <h6 class="my-4 text-center red">(for instant confirm payment, DM on <a href="https://www.instagram.com/tradesl.tech/" >Instagram</a>)</h6>
+            <form method="post" name="tslconfirmpayments">
                 <div class="form-group">
                     <label for="name">Discord Name</label>
-                    <input type="text" class="form-control" id="name" placeholder="Enter your Discord Name">
+                    <input type="text" class="form-control" id="name" name="dname" placeholder="Enter your Discord Name" required>
                 </div>
                 <div class="form-group">
                     <label for="email">Email</label>
-                    <input type="email" class="form-control" id="email" placeholder="Enter your Email">
+                    <input type="email" class="form-control" id="email" name="email" placeholder="Enter your Email" required>
                 </div>
                 <div class="form-group">
                     <label for="mobile">Mobile Number</label>
-                    <input type="number" class="form-control" id="mobile" placeholder="Enter your Mobile Number">
+                    <input type="number" class="form-control" id="mobile" name="mobile" placeholder="Enter your Mobile Number"
+                        required>
                 </div>
                 <div class="form-group">
                     <label for="TID">Transaction ID</label>
-                    <input type="text" class="form-control" id="TID" placeholder="Enter your Transaction ID">
+                    <input type="text" class="form-control" id="TID" name="tid" placeholder="Enter your Transaction ID" required>
                 </div>
                 <div class="checkbox">
                     <input type="checkbox" id="check" required>
                     <label for="check">Double check contact details so we can identify and contact money sender.</label>
                 </div>
-                <button type="submit" class="btn btn-primary">Submit</button>
+                <button type="submit" class="btn btn-primary" id="submit">Submit</button>
             </form>
         </div>
     </section>
     <!-- Footer -->
-    <footer>
+    <footer id="contact">
         <div class="container">
             <hr>
             <div class="row">
@@ -192,18 +194,18 @@
                 <div class="col-md-4">
                     <h5 class="my-4">Contact Info</h5>
                     <ul class="list-unstyled">
-                        <li><i class="fas fa-map-marker-alt"></i> 1234 Main St, Suite 300, New York, NY 10001</li>
+                        <li><i class="fas fa-map-marker-alt"></i>&nbsp Gujarat, India</li>
                         <li><i class="fas fa-phone"></i> 7990176865</li>
-                        <li><i class="fas fa-envelope"></i> tradesl@gmail.com</li>
+                        <li><i class="fas fa-envelope"></i> tradesl.tech@gmail.com</li>
                     </ul>
                 </div>
                 <div class="col-md-4">
                     <h5 class="my-4">Follow Us</h5>
                     <ul class="list-unstyled">
-                        <li><a href="#"><i class="fab fa-facebook-f"></i> Facebook</a></li>
-                        <li><a href="#"><i class="fab fa-twitter"></i> Twitter</a></li>
-                        <li><a href="#"><i class="fab fa-instagram"></i> Instagram</a></li>
-                        <li><a href="#"><i class="fab fa-youtube"></i> YouTube</a></li>
+                        <li><a href="https://www.instagram.com/tradesl.tech/"><i class="fab fa-instagram"></i>
+                                Instagram</a></li>
+                        <li><a href="https://www.youtube.com/channel/UC4HIKKvQYZL2xR9yWTaj-gQ"><i
+                                    class="fab fa-youtube"></i> YouTube</a></li>
                     </ul>
                 </div>
             </div>
@@ -223,6 +225,18 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
     <!-- Custom JavaScript -->
     <script src="script.js"></script>
+    <script>
+        const scriptURL = 'https://script.google.com/macros/s/AKfycbyYG8yTsAoqDzVTyERnFVgC2X99pTQK1-AS1Hdt5NO6-XuS12xAULzfDgdpMDIL-E9gBw/exec'
+        const form = document.forms['tslconfirmpayments']
+      
+        form.addEventListener('submit', e => {
+          e.preventDefault()
+          fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+            .then(response => alert("Thank You!, we will contact you once payment is confirmed. (for instant confimation DM on Instagram)" ))
+            .then(() => {  window.location.reload(); })
+            .catch(error => console.error('Error!', error.message))
+        })
+      </script>
 </body>
 
 </html>
